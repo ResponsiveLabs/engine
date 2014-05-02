@@ -64,6 +64,8 @@ module Locomotive
 
       response.headers['Content-Type']  = "#{@page.response_type}; charset=utf-8"
       response.headers['Editable']      = 'true' unless self.editing_page? || current_locomotive_account.nil?
+      response.headers["Content-Length"] = response.length.to_s if status == 201
+      
 
       if @page.with_cache?
         fresh_when etag: @page, last_modified: @page.updated_at.utc, public: true
