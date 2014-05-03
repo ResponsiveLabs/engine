@@ -63,8 +63,9 @@ module Locomotive
       flash.discard
 
       response.headers['Content-Type']  = "#{@page.response_type}; charset=utf-8"
+      response.headers['Content-Length'] = response.length.to_s
       response.headers['Editable']      = 'true' unless self.editing_page? || current_locomotive_account.nil?
-      response.headers['Content-Length'] = '808'
+
       
 
       if @page.with_cache?
